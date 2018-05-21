@@ -1,0 +1,37 @@
+.horizontal-menu {
+    height: 100px;
+}
+
+.job-account {
+    width: 100%;
+    margin-right: 5px;
+    height: 30px;
+    margin-top: 5px;
+    color: white;
+}
+
+.job-name {
+    width: 100%;
+    margin-right: 5px;
+    height: 40px;
+    color: white;
+}
+
+.view-all {
+    width: 100%;
+    margin-left: 5px;
+    height: 30px;
+    border-top: skyblue 1px solid;
+}
+
+.view-all a {
+    color: white;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
