@@ -1,0 +1,37 @@
+img { 
+    display: inline-block;
+}
+
+table {
+    border: 1px solid black;
+}
+
+.content {
+    margin: 30px;
+}
+
+.add-new {
+    margin: 20px;
+    width: 140px;
+}
+
+.add-new:hover {
+    opacity: 0.6;
+}
+
+.add-label {
+    margin-left: 5px;
+}
+
+.edit-icon:hover {
+    opacity: 0.6;
+}
+
+.center-align {
+    text-align: center;
+}
+
+.table-content {
+    margin: 20px;
+    width: 1200px;
+}
