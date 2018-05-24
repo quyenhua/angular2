@@ -1,10 +1,16 @@
 <div class="content">
     <h2>Employee management</h2>
     <div class="table-content">
-        <div class="add-new">
+        <div>
+            <div class="add-new col-lg-12">
             <img class="add-icon" src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-green-128.png"
                 width="20" height="20" />
             <label class="add-label" [routerLink]="['new']">Add employee</label>
+            </div>
+            <div class="col-lg-4 search-content">
+                <label for="search">Search</label>
+                <input type="text" class="search-input" name="search" (keyup)="onKey($event)" />
+            </div>
         </div>
         <table class="table table-striped">
             <thead>

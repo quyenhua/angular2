@@ -10,6 +10,7 @@ import { EmployeeService } from '../services/employee.service';
 export class EmployeeListComponent implements OnInit {
 
     public employees: any[];
+    public initialemployees: any[];
 
     constructor(private employeeService: EmployeeService) {}
 
@@ -31,6 +32,40 @@ export class EmployeeListComponent implements OnInit {
         });
     }
 
+    onKey(event: any) {
+        var name = this.change_alias(event.target.value.toLowerCase());
+        // debugger;
+        if (!name || name === "") return this.employees = this.initialemployees;
+        this.employees = this.initialemployees.filter((employee) => {
+            return this.isExisted(employee, name);
+        });
+    }
+
+    isExisted(employee, name) {
+        return (this.change_alias(employee.name.toLowerCase()).indexOf(name) > -1) ||
+            (this.change_alias(employee.userName.toLowerCase()).indexOf(name) > -1) ||
+            (employee.sex && this.change_alias(employee.sex.toLowerCase() || '').indexOf(name) > -1) ||
+            (employee.country && this.change_alias(employee.country.toLowerCase() || '').indexOf(name) > -1) ||
+            (employee.position && this.change_alias(employee.position.toLowerCase() || '').indexOf(name) > -1) ||
+            (employee.department && this.change_alias(employee.department.toLowerCase() || '').indexOf(name) > -1);
+    }
+
+    change_alias(alias: string) {
+        var str = alias;
+        str = str.toLowerCase();
+        str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+        str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+        str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+        str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+        str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+        str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+        str = str.replace(/đ/g, "d");
+        str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g, " ");
+        str = str.replace(/ + /g, " ");
+        str = str.trim();
+        return str;
+    }
+
     _getDate(empList) {
         empList.forEach(emp => {
             if (emp.birthday) {
@@ -39,5 +74,6 @@ export class EmployeeListComponent implements OnInit {
             }
         });
         this.employees = empList;
+        this.initialemployees = empList;
     }
 }
